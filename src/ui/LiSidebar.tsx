@@ -1,14 +1,19 @@
 import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   children: ReactNode;
+  to: string;
 }
 
-function LiSidebar({ children }: Props) {
+function LiSidebar({ children, to }: Props) {
   return (
-    <li className="flex justify-start gap-2 items-center px-3 py-3 rounded-md text-md font-semibold text-lg text-slate-600 hover:bg-slate-200 duration-300 cursor-pointer">
+    <Link
+      to={to}
+      className="flex justify-start gap-2 items-center px-3 py-3 rounded-md text-md font-semibold text-lg text-slate-300 hover:bg-slate-700 duration-200 cursor-pointer"
+    >
       {children}
-    </li>
+    </Link>
   );
 }
 export default LiSidebar;

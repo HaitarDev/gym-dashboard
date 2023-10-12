@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Body from "./Body";
 import Header from "./Header";
 import Main from "./Main";
@@ -10,7 +11,9 @@ function AppLayout() {
       <Header />
 
       <Body>
-        <Main />
+        <Main>
+          <Outlet />
+        </Main>
       </Body>
     </div>
   );
