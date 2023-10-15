@@ -6,12 +6,21 @@ import Textarea from "./Textarea";
 import Button from "./Button";
 import Input from "./Input";
 
-interface Props {
-  hide: () => void;
+interface MemberData {
+  name: string;
   id: number;
+  price: number;
+  observations: string;
 }
 
-function EditMember({ hide, id }: Props) {
+interface Props {
+  hide: () => void;
+  data: MemberData;
+}
+
+function EditMember({ hide, data }: Props) {
+  const { name, id, price, observations } = data;
+
   const {
     register,
     handleSubmit,
@@ -22,7 +31,7 @@ function EditMember({ hide, id }: Props) {
   const { editMembers, isLoading } = EditMembers();
 
   const onSubmit = (value: object) => {
-    editMembers({ id, value });
+    editMembers({ id, value }, { onSuccess: () => hide() });
     reset();
   };
 
@@ -55,6 +64,7 @@ function EditMember({ hide, id }: Props) {
             id="name"
             placeholder="Enter name of member"
             disable={isLoading}
+            defaultValue={name}
             useFormHook={{
               ...register("name", { required: "this field is required" }),
             }}
@@ -78,6 +88,7 @@ function EditMember({ hide, id }: Props) {
             type="number"
             placeholder="Enter the price"
             disable={isLoading}
+            defaultValue={price}
             useFormHook={{
               ...register("price", { required: "this field is required" }),
             }}
@@ -100,6 +111,7 @@ function EditMember({ hide, id }: Props) {
             id="observations"
             placeholder="Enter some observations .."
             disable={isLoading}
+            defaultValue={observations}
             useFormHook={{ ...register("observations") }}
           />
           <div className="m-1 h-2">

@@ -59,7 +59,7 @@ function MembersTable() {
           </Column>
           {isShowEditModal ? (
             <Modal hide={hideModal}>
-              <EditMember hide={hideModal} id={member.id} />
+              <EditMember hide={hideModal} data={member} />
             </Modal>
           ) : null}
         </Row>

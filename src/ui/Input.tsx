@@ -4,6 +4,7 @@ interface Props {
   useFormHook: object;
   type?: string;
   disable: boolean;
+  defaultValue?: string | number;
 }
 
 function Input({
@@ -12,6 +13,7 @@ function Input({
   useFormHook,
   type = "text",
   disable,
+  defaultValue,
 }: Props) {
   return (
     <input
@@ -21,6 +23,7 @@ function Input({
       id={id}
       placeholder={placeholder}
       disabled={disable}
+      defaultValue={defaultValue}
       className="outline-none border border-slate-300 rounded w-3/4 h-10 px-2 py-3 text-slate-700 text-base font-meduim disabled:cursor-not-allowed disabled:bg-slate-100 "
       {...useFormHook}
     />
