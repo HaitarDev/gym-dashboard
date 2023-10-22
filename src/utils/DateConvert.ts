@@ -1,4 +1,4 @@
-import { format, parseISO, addMonths, formatDistanceStrict } from "date-fns";
+import { format, parseISO, formatDistanceStrict } from "date-fns";
 
 export function formatDate(dateStr: string) {
   const parsedDate = parseISO(dateStr);
@@ -7,13 +7,15 @@ export function formatDate(dateStr: string) {
   return formattedDate;
 }
 
-// ADD DATE TO MEMBERS WHEN SUBSCRIBEING AND RETURN THE DAY WHEN IT SUBSCRIBTION END AND HOW DAYS LEFT TO IT;
-export function addDate() {
-  const dateAdded = addMonths(new Date(), 1);
+// CALCUL DAYS LEFT BETWEEN CURRENT DAY AND DAY END;
+// export function daysLeft(startDate: string, endDate: string) {
+//   const distanceDays = formatDistanceStrict(
+//     new Date(startDate), // not fix (for tracking)
+//     new Date(endDate), // fix
+//     {
+//       unit: "day",
+//     }
+//   );
 
-  const dateEnd = format(dateAdded, "yyyy-MM-dd");
-
-  const dateLeft = formatDistanceStrict(new Date(), dateAdded, { unit: "day" });
-
-  return { dateEnd, dateLeft };
-}
+//   return distanceDays;
+// }

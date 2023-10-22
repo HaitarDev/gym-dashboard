@@ -1,9 +1,9 @@
 interface Props {
   id: string;
-  placeholder: string;
+  placeholder?: string;
   useFormHook: object;
   type?: string;
-  disable: boolean;
+  disable?: boolean;
   defaultValue?: string | number;
 }
 

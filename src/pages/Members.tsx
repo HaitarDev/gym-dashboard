@@ -13,7 +13,7 @@ function Members() {
   const hideModal = () => setIsShowModal(false);
 
   return (
-    <div className="flex flex-col gap-6 max-w-7xl h-auto">
+    <div className=" flex flex-col gap-6 max-w-7xl h-[80vh]">
       <div className="flex justify-between ">
         <H1Pages>GYM MEMBERS</H1Pages>
         <div className="flex gap-12 items-center">

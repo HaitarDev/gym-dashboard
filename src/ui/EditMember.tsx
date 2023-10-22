@@ -19,7 +19,7 @@ interface Props {
 }
 
 function EditMember({ hide, data }: Props) {
-  const { name, id, price, observations } = data;
+  const { name, id, price, observations, date_end, days_left } = data;
 
   const {
     register,
@@ -30,7 +30,9 @@ function EditMember({ hide, data }: Props) {
 
   const { editMembers, isLoading } = EditMembers();
 
-  const onSubmit = (value: object) => {
+  const onSubmit = (data: object) => {
+    const value = { ...data, date_end: "2024-11-9T00:00:00+00:00" };
+
     editMembers({ id, value }, { onSuccess: () => hide() });
     reset();
   };

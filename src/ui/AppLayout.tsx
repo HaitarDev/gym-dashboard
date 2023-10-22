@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 
 function AppLayout() {
   return (
-    <div className="max-h-screen grid grid-cols-9 grid-rows-14 ">
+    <div className="max-h-screen grid grid-cols-9 grid-rows-14 break-all ">
       <Sidebar />
       <Header />
 

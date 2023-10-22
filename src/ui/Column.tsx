@@ -5,7 +5,7 @@ interface Props {
   className?: string;
 }
 
-function Column({ children, className }: Props) {
+function Column({ children, className = "" }: Props) {
   return <div className={"p-2 border " + className}>{children}</div>;
 }
 export default Column;
