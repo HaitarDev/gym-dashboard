@@ -5,21 +5,22 @@ import ErrMesage from "./ErrMesage";
 import Textarea from "./Textarea";
 import Button from "./Button";
 import Input from "./Input";
-
-interface MemberData {
-  name: string;
-  id: number;
-  price: number;
-  observations: string;
-}
+import { Data } from "../features/members/MembersTable";
+import Label from "./Label";
+import InputDate from "./InputDate";
+import { format } from "date-fns";
 
 interface Props {
   hide: () => void;
-  data: MemberData;
+  data: Data;
 }
 
 function EditMember({ hide, data }: Props) {
-  const { name, id, price, observations, date_end, days_left } = data;
+  const { name, id, price, observations, date_end } = data;
+
+  const dateEnd = format(new Date(date_end), "yyyy-MM-dd");
+
+  console.log(dateEnd);
 
   const {
     register,
@@ -31,7 +32,7 @@ function EditMember({ hide, data }: Props) {
   const { editMembers, isLoading } = EditMembers();
 
   const onSubmit = (data: object) => {
-    const value = { ...data, date_end: "2024-11-9T00:00:00+00:00" };
+    const value = data;
 
     editMembers({ id, value }, { onSuccess: () => hide() });
     reset();
@@ -119,6 +120,20 @@ function EditMember({ hide, data }: Props) {
           <div className="m-1 h-2">
             {errors?.observations ? (
               <ErrMesage>{`${errors.observations.message}`}</ErrMesage>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="flex flex-col w-2/5">
+          <Label htmlFor="date_end">End date</Label>
+          <InputDate
+            id="date_end"
+            useFormHook={{ ...register("date_end") }}
+            defaultValue={dateEnd}
+          />
+          <div className="m-1 h-2">
+            {errors?.dateEnd ? (
+              <ErrMesage>{`${errors.dateEnd.message}`}</ErrMesage>
             ) : null}
           </div>
         </div>

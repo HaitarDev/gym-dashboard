@@ -1,79 +1,56 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-
-import { BiSolidEdit } from "react-icons/bi";
-import { TiDelete } from "react-icons/ti";
-import { formatDate } from "../../utils/DateConvert";
-
 import Spinner from "../../ui/Spinner";
-import Icon from "../../ui/Icon";
 import Column from "../../ui/Column";
 import Row from "../../ui/Row";
-import Modal from "../../ui/Modal";
-
-import EditMember from "../../ui/EditMember";
 import { FetchMembers } from "./FetchMembers";
-import { DeleteMembers } from "./DeleteMembers";
+import MemberRow from "../../ui/MemberRow";
+import { useSearchParams } from "react-router-dom";
+import { isAfter } from "date-fns";
+
+export type Data = {
+  id: number;
+  created_at: string;
+  name: string;
+  price: number;
+  date_end: string;
+  days_left: string; // implement it in backend
+  observations?: string;
+};
 
 function MembersTable() {
-  const [isShowEditModal, setIsShowEditModal] = useState(false);
-
-  const showModal = () => setIsShowEditModal(true);
-  const hideModal = () => setIsShowEditModal(false);
-
   const { members, isLoadingMembers } = FetchMembers();
 
-  const { removeMember } = DeleteMembers();
+  const [searchParams] = useSearchParams();
+  const params = searchParams.get("is_active") || "all";
+
+  let filtredMembers: Data[] | undefined;
+
+  const getIsActive = (value: string) => isAfter(new Date(value), new Date());
+
+  if (params === "all") filtredMembers = members;
+  if (params === "not-active")
+    filtredMembers = members?.filter((member) => !getIsActive(member.date_end));
+  if (params === "active")
+    filtredMembers = members?.filter((member) => getIsActive(member.date_end));
 
   if (isLoadingMembers) return <Spinner />;
+
   return (
     <div className="overflow-y-scroll">
       <Row className="font-semibold bg-slate-50 border-none">
         <Column>NAME</Column>
         <Column>START DATE</Column>
         <Column>END DATE</Column>
-        <Column>
-          PRICE <span className="font-light ml-1 text-sm">(dh)</span>
-        </Column>
-        <Column>DAYS LEFT</Column>
+        <Column>PRICE</Column>
+        <Column>IS ACTIVE</Column>
         <Column>OBSERVATIONS</Column>
         <Column>EDIT | DELETE</Column>
       </Row>
 
-      {members?.map((member) => (
-        <motion.div
-          key={member.id}
-          initial={{ backgroundColor: "#FFF" }}
-          whileHover={{ backgroundColor: "#f8fafc" }}
-        >
-          <Row className="font-semibold">
-            <Column>{member.name}</Column>
-            <Column>{formatDate(member.created_at)}</Column>
-            <Column>{formatDate(member.date_end)}</Column>
-            <Column>{member.price}</Column>
-            <Column>{member.days_left}</Column>
-            <Column>{member.observations}</Column>
-            <Column className="flex justify-evenly">
-              <Icon onClick={showModal} type="column" as="edit">
-                <BiSolidEdit />
-              </Icon>
-              <Icon
-                onClick={() => removeMember(member.id)}
-                type="column"
-                as="delete"
-              >
-                <TiDelete />
-              </Icon>
-            </Column>
-            {isShowEditModal ? (
-              <Modal hide={hideModal}>
-                <EditMember hide={hideModal} data={member} />
-              </Modal>
-            ) : null}
-          </Row>
-        </motion.div>
+      {filtredMembers?.map((member: Data) => (
+        <MemberRow member={member} key={member.id} />
       ))}
     </div>
   );
 }
+
 export default MembersTable;

@@ -1,10 +1,10 @@
 import { AiOutlineUserAdd } from "react-icons/ai";
 import MembersTable from "../features/members/MembersTable";
-import SortBy from "../features/members/SortBy";
 import H1Pages from "../ui/H1Pages";
 import { useState } from "react";
 import Modal from "../ui/Modal";
 import AddMember from "../ui/AddMember";
+import FilterBy from "../features/members/FilterBy";
 
 function Members() {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -23,7 +23,7 @@ function Members() {
           >
             Add member <AiOutlineUserAdd />
           </button>
-          <SortBy />
+          <FilterBy />
         </div>
       </div>
       <MembersTable />

@@ -14,5 +14,5 @@ export function DeleteMembers() {
     onSuccess: () => toast.success("Member deleted successfully"),
   });
 
-  return { removeMember };
+  return removeMember;
 }
