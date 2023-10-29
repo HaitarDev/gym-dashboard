@@ -68,10 +68,7 @@ function AddMember({ hide }: Props) {
           ✖
         </motion.div>
       </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 ml-6"
-      >
+      <form className="flex flex-col gap-4 ml-6">
         <div className="flex flex-col gap-1 border-b border-slate-200 pb-5">
           <Label htmlFor="name">NAME</Label>
           <Input

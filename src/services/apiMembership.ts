@@ -21,7 +21,7 @@ export async function insertMember(value: object) {
     .select();
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("inserting membership error");
   }
 
@@ -33,7 +33,7 @@ export async function deleteMember(id: number) {
   const { error } = await supabase.from("membership").delete().eq("id", id);
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("deleting membership error");
   }
 }
@@ -51,7 +51,7 @@ export async function editMember({ id, value }: EditProp) {
     .select();
 
   if (error) {
-    console.error(error);
+    console.error(error.message);
     throw new Error("edit member error");
   }
 

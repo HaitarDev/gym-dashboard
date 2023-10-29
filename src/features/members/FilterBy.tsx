@@ -21,6 +21,7 @@ function FilterBy() {
     <div className="flex align-middle border border-slate-300 rounded-lg text-slate-800 font-medium">
       {filterData.map((data) => (
         <FilteredButton
+          key={data.value}
           onClick={() => handleClick(data.value)}
           active={params === data.value}
         >
