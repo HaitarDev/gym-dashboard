@@ -1,19 +1,19 @@
 import { useSearchParams } from "react-router-dom";
-import FilteredButton from "../../ui/FilteredButton";
+import FilteredButton from "./FilteredButton";
 
-function FilterBy() {
+function FilterDays() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const filterData = [
-    { label: "All", value: "all" },
-    { label: "Active", value: "active" },
-    { label: "Not active", value: "not-active" },
+    { label: "Last 7 days", value: "7" },
+    { label: "Last 30 days", value: "30" },
+    { label: "Last 90 days", value: "90" },
   ];
 
-  const params = searchParams.get("is_active") || "all";
+  const params = searchParams.get("filter_days") || "90";
 
   const handleClick = (value: string) => {
-    searchParams.set("is_active", value);
+    searchParams.set("filter_days", value);
     setSearchParams(searchParams);
   };
 
@@ -31,4 +31,4 @@ function FilterBy() {
     </div>
   );
 }
-export default FilterBy;
+export default FilterDays;

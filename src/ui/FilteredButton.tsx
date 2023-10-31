@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
-  onClick: () => void;
-  active: boolean;
+  onClick?: () => void;
+  active?: boolean;
 }
 
 function FilteredButton({ children, onClick, active }: Props) {
@@ -11,7 +11,7 @@ function FilteredButton({ children, onClick, active }: Props) {
     return (
       <button
         onClick={onClick}
-        className=" p-2 bg-green-500 text-slate-50 rounded-sm transition-colors duration-200"
+        className=" p-2 bg-green-500 text-slate-50 rounded-lg transition-colors duration-200"
       >
         {children}
       </button>
@@ -20,7 +20,7 @@ function FilteredButton({ children, onClick, active }: Props) {
   return (
     <button
       onClick={onClick}
-      className=" p-2 hover:bg-green-500 hover:text-slate-50 rounded-sm  transition-colors duration-200"
+      className=" p-2 hover:bg-green-500 hover:text-slate-50 rounded-lg  transition-colors duration-200"
     >
       {children}
     </button>

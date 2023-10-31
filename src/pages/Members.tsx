@@ -13,13 +13,13 @@ function Members() {
   const hideModal = () => setIsShowModal(false);
 
   return (
-    <div className=" flex flex-col gap-6 max-w-7xl h-[80vh]">
-      <div className="flex justify-between ">
+    <div>
+      <div className="flex justify-between mb-4 ">
         <H1Pages>GYM MEMBERS</H1Pages>
         <div className="flex gap-12 items-center">
           <button
             onClick={showModal}
-            className="flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-500 hover:bg-indigo-600 duration-200 text-slate-50 font-semibold text-sm"
+            className="flex items-center gap-2 px-4 py-3 rounded-md bg-indigo-500 hover:bg-indigo-600 duration-200 text-slate-50 font-semibold text-sm"
           >
             Add member <AiOutlineUserAdd />
           </button>
