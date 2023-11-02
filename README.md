@@ -44,7 +44,7 @@ cd gym-dashboard
 # Install project dependencies
 npm install
 .....
-
+```
 ## Usage
 
 ## License
@@ -55,4 +55,3 @@ HaitarDev Copyright .
 You can contact me on :
 mail :haitardev@gmail.com
 or : sadm3979@gmail.com 
-
